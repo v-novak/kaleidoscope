@@ -222,7 +222,7 @@ void rgb_image::save(const std::string &filename, int quality_percent) noexcept(
         tjFree(output_buffer);
     });
 
-    std::ofstream ofs("output.jpg");
+    std::ofstream ofs(filename.c_str());
     ofs.write(reinterpret_cast<char*>(output_buffer), output_size);
     ofs.close();
 }
@@ -236,17 +236,17 @@ void rgb_image::scale(rgb_image &output, int scale_percent) const
         // scale_percent = 100;
         output._impl->resize(_impl->w, _impl->h);
         memcpy(output._impl->buffer, _impl->buffer, _impl->bufsize);
-    }
+    } else {
+        float scaling_f = 100.0f / scale_percent; // for coordinates translation
+        tjscalingfactor scaling{scale_percent, 100};
+        int w = TJSCALED(_impl->w, scaling);
+        int h = TJSCALED(_impl->h, scaling);
+        output._impl->resize(w, h);
 
-    float scaling_f = 100.0f / scale_percent; // for coordinates translation
-    tjscalingfactor scaling{scale_percent, 100};
-    int w = TJSCALED(_impl->w, scaling);
-    int h = TJSCALED(_impl->h, scaling);
-    output._impl->resize(w, h);
-
-    for (int c = 0; c < w; ++c) {
-        for (int r = 0; r < h; ++r) {
-            output.set(c, r, at(scaling_f * c, scaling_f * r));
+        for (int c = 0; c < w; ++c) {
+            for (int r = 0; r < h; ++r) {
+                output.set(c, r, at(scaling_f * c, scaling_f * r));
+            }
         }
     }
 }
