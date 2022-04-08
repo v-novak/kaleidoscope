@@ -18,3 +18,8 @@ make -j
 ./kaleidoscope input.jpg output.jpg
 ```
 
+## Example
+
+| Input | Output |
+|-------|--------|
+| ![input](/examples/input.jpg) | ![output](/examples/output.jpg) |
