@@ -1,4 +1,10 @@
 # Kaleidoscope filter
+
+| Input | Output |
+|-------|--------|
+| ![input](/examples/input.jpg) | ![output](/examples/output.jpg) |
+
+
 Built with no additional libraries, other than libjpeg-turbo
 
 ## Features:
@@ -18,8 +24,3 @@ make -j
 ./kaleidoscope input.jpg output.jpg
 ```
 
-## Example
-
-| Input | Output |
-|-------|--------|
-| ![input](/examples/input.jpg) | ![output](/examples/output.jpg) |
