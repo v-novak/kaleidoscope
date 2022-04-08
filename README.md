@@ -1,5 +1,5 @@
 # Kaleidoscope filter
-Built with no additional libraries, other that libjpeg-turbo
+Built with no additional libraries, other than libjpeg-turbo
 
 ## Features:
 * interpolation, resizing of the image
